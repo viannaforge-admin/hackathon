@@ -1,0 +1,78 @@
+services:
+  graph-mock:
+    build:
+      context: ./graph-mock
+      dockerfile: Dockerfile
+    container_name: graph-mock-server
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  baseline-service:
+    build:
+      context: ./baseline-service
+      dockerfile: Dockerfile
+    container_name: baseline-service
+    environment:
+      - GRAPH_BASE_URL=http://graph-mock:8000
+      - USE_LLM_KEYWORD_MINER=${USE_LLM_KEYWORD_MINER:-false}
+      - KEYWORD_MINER_URL=http://llm-explainer-service:8030
+      - KEYWORD_MINER_BATCH_SIZE=${KEYWORD_MINER_BATCH_SIZE:-200}
+      - KEYWORD_MINER_TIMEOUT_SECONDS=3.0
+      - KEYWORD_MINER_MAX_RETRIES=3
+    depends_on:
+      - graph-mock
+      - llm-explainer-service
+    volumes:
+      - ./baseline-service:/app
+    ports:
+      - "8010:8010"
+    restart: unless-stopped
+
+  misdelivery-service:
+    build:
+      context: ./misdelivery-service
+      dockerfile: Dockerfile
+    container_name: misdelivery-service
+    environment:
+      - GRAPH_BASE_URL=http://graph-mock:8000
+      - BASELINE_PATH=/baseline/baseline.json
+      - USE_LLM_EXPLAINER=${USE_LLM_EXPLAINER:-false}
+      - LLM_EXPLAINER_URL=http://llm-explainer-service:8030
+    depends_on:
+      - graph-mock
+      - baseline-service
+      - llm-explainer-service
+    volumes:
+      - ./misdelivery-service:/app
+      - ./baseline-service:/baseline:ro
+    ports:
+      - "8020:8020"
+    restart: unless-stopped
+
+  llm-explainer-service:
+    build:
+      context: ./llm-explainer-service
+      dockerfile: Dockerfile
+    container_name: llm-explainer-service
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - OPENAI_TEMPERATURE=${OPENAI_TEMPERATURE:-0}
+      - OPENAI_TIMEOUT_SECONDS=1.5
+    ports:
+      - "8030:8030"
+    restart: unless-stopped
+
+  keyword-review-frontend:
+    build:
+      context: ./keyword-review-frontend
+      dockerfile: Dockerfile
+    container_name: keyword-review-frontend
+    environment:
+      - BASELINE_SERVICE_URL=http://baseline-service:8010
+    depends_on:
+      - baseline-service
+    ports:
+      - "8040:8040"
+    restart: unless-stopped

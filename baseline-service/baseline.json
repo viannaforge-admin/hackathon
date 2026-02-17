@@ -1,0 +1,1467 @@
+{
+  "meta": {
+    "base_url": "http://graph-mock:8000",
+    "days": 35,
+    "now_fixed": "2026-02-15T00:00:00Z",
+    "generated_at": "2026-02-17T06:14:12Z",
+    "user_count": 18,
+    "message_count": 10120
+  },
+  "users": {
+    "u001": {
+      "known_participants": [
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u011",
+        "u012"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 21,
+        "4": 47,
+        "5": 61,
+        "6": 56,
+        "7": 65,
+        "8": 68,
+        "9": 80,
+        "10": 77,
+        "11": 68,
+        "12": 61,
+        "13": 68,
+        "14": 45,
+        "15": 8,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 9
+      },
+      "weekend_rate": 0.084469,
+      "recipient_mean": 4.168937,
+      "recipient_std": 3.003869,
+      "attachment_rate": 0.043597,
+      "attachment_types": {
+        "none": 702,
+        "link": 32,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 734
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u002": 474,
+          "u003": 541,
+          "u005": 532,
+          "u004": 440,
+          "u006": 361,
+          "u007": 107,
+          "u008": 107,
+          "u009": 107,
+          "u010": 107,
+          "u011": 142,
+          "u012": 142
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u002": {
+      "known_participants": [
+        "u001",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u011",
+        "u012"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 23,
+        "4": 51,
+        "5": 49,
+        "6": 62,
+        "7": 51,
+        "8": 63,
+        "9": 41,
+        "10": 46,
+        "11": 50,
+        "12": 41,
+        "13": 59,
+        "14": 35,
+        "15": 8,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 8
+      },
+      "weekend_rate": 0.11925,
+      "recipient_mean": 5.091993,
+      "recipient_std": 3.044539,
+      "attachment_rate": 0.034072,
+      "attachment_types": {
+        "none": 567,
+        "link": 20,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 587
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u001": 490,
+          "u003": 411,
+          "u004": 508,
+          "u005": 411,
+          "u006": 349,
+          "u007": 116,
+          "u008": 116,
+          "u009": 116,
+          "u010": 116,
+          "u011": 178,
+          "u012": 178
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u003": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u011",
+        "u012"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 21,
+        "4": 69,
+        "5": 81,
+        "6": 97,
+        "7": 80,
+        "8": 87,
+        "9": 91,
+        "10": 77,
+        "11": 82,
+        "12": 76,
+        "13": 51,
+        "14": 55,
+        "15": 4,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 11
+      },
+      "weekend_rate": 0.094104,
+      "recipient_mean": 4.895692,
+      "recipient_std": 2.655675,
+      "attachment_rate": 0.056689,
+      "attachment_types": {
+        "none": 832,
+        "link": 50,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 882
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u001": 553,
+          "u002": 402,
+          "u004": 713,
+          "u005": 564,
+          "u006": 400,
+          "u007": 219,
+          "u008": 309,
+          "u009": 219,
+          "u010": 219,
+          "u011": 405,
+          "u012": 315
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u004": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u011",
+        "u012"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 9,
+        "4": 53,
+        "5": 87,
+        "6": 71,
+        "7": 69,
+        "8": 70,
+        "9": 91,
+        "10": 84,
+        "11": 68,
+        "12": 70,
+        "13": 70,
+        "14": 38,
+        "15": 4,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 10
+      },
+      "weekend_rate": 0.107053,
+      "recipient_mean": 5.089421,
+      "recipient_std": 2.780068,
+      "attachment_rate": 0.060453,
+      "attachment_types": {
+        "none": 746,
+        "link": 48,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 794
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u001": 436,
+          "u002": 465,
+          "u003": 711,
+          "u005": 436,
+          "u006": 383,
+          "u007": 234,
+          "u008": 234,
+          "u009": 234,
+          "u010": 234,
+          "u011": 337,
+          "u012": 337
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u005": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u011",
+        "u012"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 1,
+        "1": 0,
+        "2": 0,
+        "3": 14,
+        "4": 65,
+        "5": 54,
+        "6": 86,
+        "7": 70,
+        "8": 71,
+        "9": 53,
+        "10": 61,
+        "11": 64,
+        "12": 62,
+        "13": 50,
+        "14": 52,
+        "15": 5,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 7
+      },
+      "weekend_rate": 0.090909,
+      "recipient_mean": 4.734266,
+      "recipient_std": 2.818895,
+      "attachment_rate": 0.040559,
+      "attachment_types": {
+        "none": 686,
+        "link": 29,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 715
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u001": 542,
+          "u002": 386,
+          "u003": 543,
+          "u004": 454,
+          "u006": 486,
+          "u007": 114,
+          "u008": 203,
+          "u009": 114,
+          "u010": 114,
+          "u011": 259,
+          "u012": 170
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u006": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u011",
+        "u012"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 10,
+        "4": 41,
+        "5": 46,
+        "6": 55,
+        "7": 45,
+        "8": 74,
+        "9": 51,
+        "10": 58,
+        "11": 60,
+        "12": 61,
+        "13": 56,
+        "14": 38,
+        "15": 1,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 4
+      },
+      "weekend_rate": 0.101667,
+      "recipient_mean": 5.033333,
+      "recipient_std": 2.899808,
+      "attachment_rate": 0.043333,
+      "attachment_types": {
+        "none": 574,
+        "link": 26,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 600
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u001": 397,
+          "u002": 338,
+          "u003": 397,
+          "u004": 397,
+          "u005": 493,
+          "u007": 115,
+          "u008": 115,
+          "u009": 115,
+          "u010": 222,
+          "u011": 269,
+          "u012": 162
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u007": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u008",
+        "u009",
+        "u010",
+        "u011",
+        "u012",
+        "u013",
+        "u014",
+        "u015",
+        "u016",
+        "u017"
+      ],
+      "known_external_domains": [
+        "gmail.com",
+        "partner.org",
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 1,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 30,
+        "5": 107,
+        "6": 90,
+        "7": 85,
+        "8": 108,
+        "9": 95,
+        "10": 97,
+        "11": 72,
+        "12": 80,
+        "13": 85,
+        "14": 54,
+        "15": 70,
+        "16": 9,
+        "17": 13,
+        "18": 15,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 21
+      },
+      "weekend_rate": 0.118217,
+      "recipient_mean": 3.964147,
+      "recipient_std": 2.698276,
+      "attachment_rate": 0.141473,
+      "attachment_types": {
+        "none": 886,
+        "link": 76,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 70,
+        "other": 0
+      },
+      "topic_histogram": {
+        "finance": 18,
+        "normal": 1014
+      },
+      "rare_topics": [
+        "finance"
+      ],
+      "topic_recipient_counts": {
+        "finance": {
+          "u001": 3,
+          "u002": 3,
+          "u003": 5,
+          "u004": 5,
+          "u005": 3,
+          "u006": 3,
+          "u008": 11,
+          "u009": 9,
+          "u010": 8,
+          "u011": 5,
+          "u012": 6,
+          "u013": 4,
+          "u014": 2,
+          "u016": 1
+        },
+        "normal": {
+          "u001": 93,
+          "u002": 93,
+          "u003": 212,
+          "u004": 212,
+          "u005": 93,
+          "u006": 93,
+          "u008": 622,
+          "u009": 624,
+          "u010": 528,
+          "u011": 186,
+          "u012": 264,
+          "u013": 383,
+          "u017": 114,
+          "u014": 238,
+          "u015": 172,
+          "u016": 96
+        }
+      },
+      "topic_external_domain_counts": {
+        "finance": {
+          "vendor.com": 5,
+          "partner.org": 2
+        },
+        "normal": {
+          "vendor.com": 479,
+          "gmail.com": 114,
+          "partner.org": 410
+        }
+      }
+    },
+    "u008": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u009",
+        "u010",
+        "u011",
+        "u012",
+        "u013",
+        "u014",
+        "u015"
+      ],
+      "known_external_domains": [
+        "partner.org",
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 1,
+        "1": 0,
+        "2": 0,
+        "3": 5,
+        "4": 28,
+        "5": 64,
+        "6": 65,
+        "7": 73,
+        "8": 76,
+        "9": 75,
+        "10": 73,
+        "11": 70,
+        "12": 75,
+        "13": 74,
+        "14": 57,
+        "15": 32,
+        "16": 9,
+        "17": 9,
+        "18": 10,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 11
+      },
+      "weekend_rate": 0.089219,
+      "recipient_mean": 4.670384,
+      "recipient_std": 2.708087,
+      "attachment_rate": 0.137546,
+      "attachment_types": {
+        "none": 696,
+        "link": 65,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 46,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 798,
+        "finance": 9
+      },
+      "rare_topics": [
+        "finance"
+      ],
+      "topic_recipient_counts": {
+        "finance": {
+          "u011": 2,
+          "u012": 3,
+          "u007": 9,
+          "u009": 7,
+          "u010": 7,
+          "u003": 2,
+          "u004": 2,
+          "u013": 3,
+          "u014": 4,
+          "u015": 3
+        },
+        "normal": {
+          "u001": 111,
+          "u002": 111,
+          "u003": 302,
+          "u004": 227,
+          "u005": 186,
+          "u006": 111,
+          "u007": 609,
+          "u009": 528,
+          "u010": 528,
+          "u011": 191,
+          "u012": 197,
+          "u013": 146,
+          "u014": 334,
+          "u015": 146
+        }
+      },
+      "topic_external_domain_counts": {
+        "finance": {
+          "vendor.com": 3,
+          "partner.org": 7
+        },
+        "normal": {
+          "vendor.com": 146,
+          "partner.org": 480
+        }
+      }
+    },
+    "u009": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u010",
+        "u011",
+        "u012",
+        "u013",
+        "u014",
+        "u015",
+        "u016"
+      ],
+      "known_external_domains": [
+        "partner.org",
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 23,
+        "5": 92,
+        "6": 67,
+        "7": 69,
+        "8": 94,
+        "9": 75,
+        "10": 86,
+        "11": 71,
+        "12": 63,
+        "13": 65,
+        "14": 70,
+        "15": 44,
+        "16": 14,
+        "17": 7,
+        "18": 6,
+        "19": 1,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 7
+      },
+      "weekend_rate": 0.090164,
+      "recipient_mean": 4.611241,
+      "recipient_std": 2.654353,
+      "attachment_rate": 0.135831,
+      "attachment_types": {
+        "none": 738,
+        "link": 70,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 46,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 844,
+        "finance": 10
+      },
+      "rare_topics": [
+        "finance"
+      ],
+      "topic_recipient_counts": {
+        "finance": {
+          "u001": 3,
+          "u002": 3,
+          "u003": 5,
+          "u004": 5,
+          "u005": 3,
+          "u006": 3,
+          "u007": 6,
+          "u008": 6,
+          "u010": 9,
+          "u011": 2,
+          "u012": 2,
+          "u013": 1,
+          "u014": 1,
+          "u015": 2
+        },
+        "normal": {
+          "u001": 97,
+          "u002": 97,
+          "u003": 209,
+          "u004": 209,
+          "u005": 97,
+          "u006": 97,
+          "u007": 636,
+          "u008": 546,
+          "u010": 637,
+          "u011": 112,
+          "u012": 182,
+          "u013": 292,
+          "u014": 267,
+          "u015": 319,
+          "u016": 90
+        }
+      },
+      "topic_external_domain_counts": {
+        "finance": {
+          "vendor.com": 1,
+          "partner.org": 3
+        },
+        "normal": {
+          "vendor.com": 382,
+          "partner.org": 586
+        }
+      }
+    },
+    "u010": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u011",
+        "u012",
+        "u013",
+        "u014",
+        "u015",
+        "u016"
+      ],
+      "known_external_domains": [
+        "partner.org",
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 5,
+        "4": 28,
+        "5": 76,
+        "6": 73,
+        "7": 79,
+        "8": 91,
+        "9": 74,
+        "10": 85,
+        "11": 63,
+        "12": 69,
+        "13": 84,
+        "14": 54,
+        "15": 22,
+        "16": 16,
+        "17": 5,
+        "18": 7,
+        "19": 1,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 12
+      },
+      "weekend_rate": 0.101896,
+      "recipient_mean": 4.643365,
+      "recipient_std": 2.746746,
+      "attachment_rate": 0.14455,
+      "attachment_types": {
+        "none": 722,
+        "link": 64,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 58,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 828,
+        "finance": 16
+      },
+      "rare_topics": [
+        "finance"
+      ],
+      "topic_recipient_counts": {
+        "finance": {
+          "u001": 1,
+          "u002": 1,
+          "u003": 2,
+          "u004": 2,
+          "u005": 1,
+          "u006": 7,
+          "u007": 6,
+          "u008": 6,
+          "u009": 7,
+          "u011": 7,
+          "u012": 2,
+          "u013": 1,
+          "u014": 3,
+          "u015": 1,
+          "u016": 3
+        },
+        "normal": {
+          "u001": 110,
+          "u002": 110,
+          "u003": 231,
+          "u004": 231,
+          "u005": 110,
+          "u006": 209,
+          "u007": 549,
+          "u008": 549,
+          "u009": 634,
+          "u011": 220,
+          "u012": 185,
+          "u013": 191,
+          "u014": 254,
+          "u015": 191,
+          "u016": 95
+        }
+      },
+      "topic_external_domain_counts": {
+        "finance": {
+          "vendor.com": 4,
+          "partner.org": 4
+        },
+        "normal": {
+          "vendor.com": 286,
+          "partner.org": 445
+        }
+      }
+    },
+    "u011": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u012"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 5,
+        "4": 44,
+        "5": 78,
+        "6": 96,
+        "7": 81,
+        "8": 65,
+        "9": 94,
+        "10": 79,
+        "11": 89,
+        "12": 67,
+        "13": 45,
+        "14": 11,
+        "15": 0,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 10
+      },
+      "weekend_rate": 0.109948,
+      "recipient_mean": 3.763089,
+      "recipient_std": 2.379592,
+      "attachment_rate": 0.201571,
+      "attachment_types": {
+        "none": 610,
+        "link": 0,
+        "zip": 0,
+        "xlsx": 86,
+        "pdf": 68,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 755,
+        "finance": 9
+      },
+      "rare_topics": [
+        "finance"
+      ],
+      "topic_recipient_counts": {
+        "finance": {
+          "u012": 5,
+          "u007": 2,
+          "u008": 3,
+          "u009": 1,
+          "u010": 3,
+          "u003": 4,
+          "u004": 2,
+          "u005": 2,
+          "u006": 2
+        },
+        "normal": {
+          "u001": 68,
+          "u002": 68,
+          "u003": 422,
+          "u004": 358,
+          "u005": 132,
+          "u006": 174,
+          "u012": 585,
+          "u007": 310,
+          "u008": 252,
+          "u009": 188,
+          "u010": 294
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u012": {
+      "known_participants": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u011"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 31,
+        "5": 60,
+        "6": 81,
+        "7": 57,
+        "8": 50,
+        "9": 83,
+        "10": 81,
+        "11": 53,
+        "12": 46,
+        "13": 47,
+        "14": 7,
+        "15": 0,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 8
+      },
+      "weekend_rate": 0.119008,
+      "recipient_mean": 4.406612,
+      "recipient_std": 2.454873,
+      "attachment_rate": 0.209917,
+      "attachment_types": {
+        "none": 478,
+        "link": 0,
+        "zip": 0,
+        "xlsx": 63,
+        "pdf": 64,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 592,
+        "finance": 13
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "finance": {
+          "u001": 1,
+          "u002": 1,
+          "u003": 10,
+          "u004": 10,
+          "u005": 1,
+          "u006": 1,
+          "u011": 13,
+          "u007": 9,
+          "u008": 7,
+          "u009": 7,
+          "u010": 7
+        },
+        "normal": {
+          "u001": 61,
+          "u002": 61,
+          "u003": 371,
+          "u004": 371,
+          "u005": 61,
+          "u006": 61,
+          "u011": 568,
+          "u007": 355,
+          "u008": 230,
+          "u009": 230,
+          "u010": 230
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u013": {
+      "known_participants": [
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u014",
+        "u015",
+        "u016"
+      ],
+      "known_external_domains": [
+        "partner.org",
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 10,
+        "5": 19,
+        "6": 20,
+        "7": 26,
+        "8": 25,
+        "9": 21,
+        "10": 24,
+        "11": 26,
+        "12": 18,
+        "13": 23,
+        "14": 22,
+        "15": 29,
+        "16": 1,
+        "17": 6,
+        "18": 1,
+        "19": 1,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 6
+      },
+      "weekend_rate": 0.118705,
+      "recipient_mean": 4.215827,
+      "recipient_std": 2.097489,
+      "attachment_rate": 0.043165,
+      "attachment_types": {
+        "none": 266,
+        "link": 12,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 278
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u007": 278,
+          "u008": 154,
+          "u009": 216,
+          "u010": 154,
+          "u014": 154,
+          "u015": 154,
+          "u016": 62
+        }
+      },
+      "topic_external_domain_counts": {
+        "normal": {
+          "partner.org": 308,
+          "vendor.com": 62
+        }
+      }
+    },
+    "u014": {
+      "known_participants": [
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u013",
+        "u015"
+      ],
+      "known_external_domains": [
+        "partner.org",
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 5,
+        "5": 23,
+        "6": 22,
+        "7": 10,
+        "8": 23,
+        "9": 21,
+        "10": 28,
+        "11": 17,
+        "12": 12,
+        "13": 28,
+        "14": 14,
+        "15": 19,
+        "16": 4,
+        "17": 5,
+        "18": 2,
+        "19": 2,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 3
+      },
+      "weekend_rate": 0.12605,
+      "recipient_mean": 4.218487,
+      "recipient_std": 2.132815,
+      "attachment_rate": 0.033613,
+      "attachment_types": {
+        "none": 230,
+        "link": 8,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 238
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u007": 172,
+          "u008": 238,
+          "u009": 172,
+          "u010": 172,
+          "u013": 125,
+          "u015": 125
+        }
+      },
+      "topic_external_domain_counts": {
+        "normal": {
+          "vendor.com": 125,
+          "partner.org": 125
+        }
+      }
+    },
+    "u015": {
+      "known_participants": [
+        "u007",
+        "u008",
+        "u009",
+        "u010",
+        "u013",
+        "u014"
+      ],
+      "known_external_domains": [
+        "partner.org",
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 14,
+        "6": 15,
+        "7": 15,
+        "8": 14,
+        "9": 18,
+        "10": 14,
+        "11": 14,
+        "12": 10,
+        "13": 19,
+        "14": 16,
+        "15": 11,
+        "16": 1,
+        "17": 2,
+        "18": 1,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 2
+      },
+      "weekend_rate": 0.065868,
+      "recipient_mean": 4.143713,
+      "recipient_std": 2.415706,
+      "attachment_rate": 0.053892,
+      "attachment_types": {
+        "none": 158,
+        "link": 9,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 167
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u007": 105,
+          "u008": 105,
+          "u009": 167,
+          "u010": 105,
+          "u013": 105,
+          "u014": 105
+        }
+      },
+      "topic_external_domain_counts": {
+        "normal": {
+          "vendor.com": 105,
+          "partner.org": 105
+        }
+      }
+    },
+    "u016": {
+      "known_participants": [
+        "u007",
+        "u009",
+        "u010",
+        "u013"
+      ],
+      "known_external_domains": [
+        "vendor.com"
+      ],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 5,
+        "5": 20,
+        "6": 16,
+        "7": 6,
+        "8": 8,
+        "9": 13,
+        "10": 16,
+        "11": 11,
+        "12": 12,
+        "13": 12,
+        "14": 11,
+        "15": 10,
+        "16": 5,
+        "17": 1,
+        "18": 3,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 4
+      },
+      "weekend_rate": 0.117647,
+      "recipient_mean": 1.928105,
+      "recipient_std": 0.997412,
+      "attachment_rate": 0.026144,
+      "attachment_types": {
+        "none": 149,
+        "link": 4,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 153
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u007": 71,
+          "u009": 71,
+          "u013": 71,
+          "u010": 82
+        }
+      },
+      "topic_external_domain_counts": {
+        "normal": {
+          "vendor.com": 71
+        }
+      }
+    },
+    "u017": {
+      "known_participants": [
+        "u007"
+      ],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 3,
+        "6": 7,
+        "7": 6,
+        "8": 7,
+        "9": 6,
+        "10": 3,
+        "11": 2,
+        "12": 10,
+        "13": 3,
+        "14": 9,
+        "15": 6,
+        "16": 0,
+        "17": 2,
+        "18": 0,
+        "19": 1,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0
+      },
+      "weekend_rate": 0.090909,
+      "recipient_mean": 1.0,
+      "recipient_std": 0.0,
+      "attachment_rate": 0.030303,
+      "attachment_types": {
+        "none": 64,
+        "link": 2,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {
+        "normal": 66
+      },
+      "rare_topics": [],
+      "topic_recipient_counts": {
+        "normal": {
+          "u007": 66
+        }
+      },
+      "topic_external_domain_counts": {}
+    },
+    "u018": {
+      "known_participants": [],
+      "known_external_domains": [],
+      "hour_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0
+      },
+      "weekend_rate": 0.0,
+      "recipient_mean": 0.0,
+      "recipient_std": 0.0,
+      "attachment_rate": 0.0,
+      "attachment_types": {
+        "none": 0,
+        "link": 0,
+        "zip": 0,
+        "xlsx": 0,
+        "pdf": 0,
+        "other": 0
+      },
+      "topic_histogram": {},
+      "rare_topics": [],
+      "topic_recipient_counts": {},
+      "topic_external_domain_counts": {}
+    }
+  }
+}

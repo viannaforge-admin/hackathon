@@ -1,0 +1,101 @@
+{
+  "normal_threshold": 2,
+  "topics": {
+    "hr_compensation": {
+      "single_keywords": [
+        "salary",
+        "payroll",
+        "bonus",
+        "increment",
+        "appraisal",
+        "compensation",
+        "ctc",
+        "payslip"
+      ],
+      "phrases": [
+        "offer letter"
+      ]
+    },
+    "finance": {
+      "single_keywords": [
+        "invoice",
+        "billing",
+        "payment",
+        "bank",
+        "account",
+        "ifsc",
+        "gst",
+        "tds",
+        "tax",
+        "refund",
+        "quotation",
+        "po"
+      ],
+      "phrases": [
+        "purchase order"
+      ]
+    },
+    "legal": {
+      "single_keywords": [
+        "contract",
+        "agreement",
+        "nda",
+        "msa",
+        "sow",
+        "clause",
+        "confidentiality",
+        "termination"
+      ],
+      "phrases": [
+        "legal notice"
+      ]
+    },
+    "customer_data": {
+      "single_keywords": [
+        "contacts",
+        "address",
+        "export",
+        "dump",
+        "database",
+        "leads",
+        "pii"
+      ],
+      "phrases": [
+        "customer list",
+        "client list",
+        "phone number"
+      ]
+    },
+    "credentials_secrets": {
+      "single_keywords": [
+        "password",
+        "secret",
+        "token",
+        "ssh",
+        ".pem",
+        "credentials"
+      ],
+      "phrases": [
+        "api key",
+        "private key"
+      ]
+    },
+    "technical": {
+      "single_keywords": [
+        "deploy",
+        "release",
+        "incident",
+        "oncall",
+        "logs",
+        "stacktrace",
+        "error",
+        "api",
+        "endpoint",
+        "kubernetes",
+        "ecs",
+        "terraform"
+      ],
+      "phrases": []
+    }
+  }
+}

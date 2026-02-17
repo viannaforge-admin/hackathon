@@ -1,0 +1,164 @@
+[
+  {
+    "id": "u001",
+    "displayName": "Rahul Sharma",
+    "userPrincipalName": "rahul.sharma@company.com",
+    "mail": "rahul.sharma@company.com",
+    "userType": "Member",
+    "department": "Engineering",
+    "jobTitle": "Senior Backend Engineer"
+  },
+  {
+    "id": "u002",
+    "displayName": "Rahul Verma",
+    "userPrincipalName": "rahul.verma@company.com",
+    "mail": "rahul.verma@company.com",
+    "userType": "Member",
+    "department": "Engineering",
+    "jobTitle": "Platform Engineer"
+  },
+  {
+    "id": "u003",
+    "displayName": "Amit Singh",
+    "userPrincipalName": "amit.singh@company.com",
+    "mail": "amit.singh@company.com",
+    "userType": "Member",
+    "department": "Engineering",
+    "jobTitle": "SRE Engineer"
+  },
+  {
+    "id": "u004",
+    "displayName": "Amit Sinha",
+    "userPrincipalName": "amit.sinha@company.com",
+    "mail": "amit.sinha@company.com",
+    "userType": "Member",
+    "department": "Engineering",
+    "jobTitle": "Engineering Manager"
+  },
+  {
+    "id": "u005",
+    "displayName": "Neha Gupta",
+    "userPrincipalName": "neha.gupta@company.com",
+    "mail": "neha.gupta@company.com",
+    "userType": "Member",
+    "department": "Engineering",
+    "jobTitle": "Frontend Engineer"
+  },
+  {
+    "id": "u006",
+    "displayName": "Neha Goyal",
+    "userPrincipalName": "neha.goyal@company.com",
+    "mail": "neha.goyal@company.com",
+    "userType": "Member",
+    "department": "Engineering",
+    "jobTitle": "QA Engineer"
+  },
+  {
+    "id": "u007",
+    "displayName": "Priya Menon",
+    "userPrincipalName": "priya.menon@company.com",
+    "mail": "priya.menon@company.com",
+    "userType": "Member",
+    "department": "Sales",
+    "jobTitle": "Account Executive"
+  },
+  {
+    "id": "u008",
+    "displayName": "Karan Mehta",
+    "userPrincipalName": "karan.mehta@company.com",
+    "mail": "karan.mehta@company.com",
+    "userType": "Member",
+    "department": "Customer Success",
+    "jobTitle": "Customer Success Manager"
+  },
+  {
+    "id": "u009",
+    "displayName": "Sana Khan",
+    "userPrincipalName": "sana.khan@company.com",
+    "mail": "sana.khan@company.com",
+    "userType": "Member",
+    "department": "Sales",
+    "jobTitle": "Solutions Consultant"
+  },
+  {
+    "id": "u010",
+    "displayName": "Arjun Batra",
+    "userPrincipalName": "arjun.batra@company.com",
+    "mail": "arjun.batra@company.com",
+    "userType": "Member",
+    "department": "Customer Success",
+    "jobTitle": "Implementation Specialist"
+  },
+  {
+    "id": "u011",
+    "displayName": "Isha Kapoor",
+    "userPrincipalName": "isha.kapoor@company.com",
+    "mail": "isha.kapoor@company.com",
+    "userType": "Member",
+    "department": "HR",
+    "jobTitle": "HR Business Partner"
+  },
+  {
+    "id": "u012",
+    "displayName": "Vivek Jain",
+    "userPrincipalName": "vivek.jain@company.com",
+    "mail": "vivek.jain@company.com",
+    "userType": "Member",
+    "department": "Finance",
+    "jobTitle": "Finance Operations Lead"
+  },
+  {
+    "id": "u013",
+    "displayName": "Rahul",
+    "userPrincipalName": "rahul@vendor.com",
+    "mail": "rahul@vendor.com",
+    "userType": "Guest",
+    "department": "Vendor",
+    "jobTitle": "Integration Consultant"
+  },
+  {
+    "id": "u014",
+    "displayName": "Emily Clark",
+    "userPrincipalName": "emily.clark@partner.org",
+    "mail": "emily.clark@partner.org",
+    "userType": "Guest",
+    "department": "Partner",
+    "jobTitle": "Partner Manager"
+  },
+  {
+    "id": "u015",
+    "displayName": "David Lee",
+    "userPrincipalName": "david.lee@partner.org",
+    "mail": "david.lee@partner.org",
+    "userType": "Guest",
+    "department": "Client",
+    "jobTitle": "IT Director"
+  },
+  {
+    "id": "u016",
+    "displayName": "Meera Iyer",
+    "userPrincipalName": "meera@vendor.com",
+    "mail": "meera@vendor.com",
+    "userType": "Guest",
+    "department": "Vendor",
+    "jobTitle": "Delivery Lead"
+  },
+  {
+    "id": "u017",
+    "displayName": "Tom Wilson",
+    "userPrincipalName": "tom.wilson@gmail.com",
+    "mail": "tom.wilson@gmail.com",
+    "userType": "Guest",
+    "department": "Client",
+    "jobTitle": "Founder"
+  },
+  {
+    "id": "u018",
+    "displayName": "Alicia Gomez",
+    "userPrincipalName": "alicia.gomez@partner.org",
+    "mail": "alicia.gomez@partner.org",
+    "userType": "Guest",
+    "department": "Partner",
+    "jobTitle": "Procurement Lead"
+  }
+]

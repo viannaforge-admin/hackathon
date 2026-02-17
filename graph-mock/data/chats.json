@@ -1,0 +1,604 @@
+[
+  {
+    "id": "c001",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u002",
+        "displayName": "Rahul Verma"
+      }
+    ]
+  },
+  {
+    "id": "c002",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      }
+    ]
+  },
+  {
+    "id": "c003",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      },
+      {
+        "userId": "u006",
+        "displayName": "Neha Goyal"
+      }
+    ]
+  },
+  {
+    "id": "c004",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      }
+    ]
+  },
+  {
+    "id": "c005",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u002",
+        "displayName": "Rahul Verma"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      }
+    ]
+  },
+  {
+    "id": "c006",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      }
+    ]
+  },
+  {
+    "id": "c007",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u013",
+        "displayName": "Rahul"
+      }
+    ]
+  },
+  {
+    "id": "c008",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      },
+      {
+        "userId": "u014",
+        "displayName": "Emily Clark"
+      }
+    ]
+  },
+  {
+    "id": "c009",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u015",
+        "displayName": "David Lee"
+      }
+    ]
+  },
+  {
+    "id": "c010",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      },
+      {
+        "userId": "u016",
+        "displayName": "Meera Iyer"
+      }
+    ]
+  },
+  {
+    "id": "c011",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      }
+    ]
+  },
+  {
+    "id": "c012",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      }
+    ]
+  },
+  {
+    "id": "c013",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u011",
+        "displayName": "Isha Kapoor"
+      },
+      {
+        "userId": "u012",
+        "displayName": "Vivek Jain"
+      }
+    ]
+  },
+  {
+    "id": "c014",
+    "chatType": "oneOnOne",
+    "members": [
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u017",
+        "displayName": "Tom Wilson"
+      }
+    ]
+  },
+  {
+    "id": "c015",
+    "topic": "All-Hands",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u002",
+        "displayName": "Rahul Verma"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      },
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      },
+      {
+        "userId": "u006",
+        "displayName": "Neha Goyal"
+      },
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      },
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      }
+    ]
+  },
+  {
+    "id": "c016",
+    "topic": "Finance Ops",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u011",
+        "displayName": "Isha Kapoor"
+      },
+      {
+        "userId": "u012",
+        "displayName": "Vivek Jain"
+      },
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      },
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      }
+    ]
+  },
+  {
+    "id": "c017",
+    "topic": "Eng Platform",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u002",
+        "displayName": "Rahul Verma"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      },
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      },
+      {
+        "userId": "u006",
+        "displayName": "Neha Goyal"
+      },
+      {
+        "userId": "u011",
+        "displayName": "Isha Kapoor"
+      },
+      {
+        "userId": "u012",
+        "displayName": "Vivek Jain"
+      }
+    ]
+  },
+  {
+    "id": "c018",
+    "topic": "Customer XYZ",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      },
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      },
+      {
+        "userId": "u013",
+        "displayName": "Rahul"
+      },
+      {
+        "userId": "u014",
+        "displayName": "Emily Clark"
+      },
+      {
+        "userId": "u015",
+        "displayName": "David Lee"
+      }
+    ]
+  },
+  {
+    "id": "c019",
+    "topic": "Oncall",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u002",
+        "displayName": "Rahul Verma"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      },
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      }
+    ]
+  },
+  {
+    "id": "c020",
+    "topic": "Release",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      },
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      },
+      {
+        "userId": "u006",
+        "displayName": "Neha Goyal"
+      }
+    ]
+  },
+  {
+    "id": "c021",
+    "topic": "Pipeline",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      },
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      },
+      {
+        "userId": "u012",
+        "displayName": "Vivek Jain"
+      }
+    ]
+  },
+  {
+    "id": "c022",
+    "topic": "QBR Prep",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      },
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      },
+      {
+        "userId": "u014",
+        "displayName": "Emily Clark"
+      }
+    ]
+  },
+  {
+    "id": "c023",
+    "topic": "HR Team",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u011",
+        "displayName": "Isha Kapoor"
+      },
+      {
+        "userId": "u012",
+        "displayName": "Vivek Jain"
+      },
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      }
+    ]
+  },
+  {
+    "id": "c024",
+    "topic": "Payroll Ops",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u011",
+        "displayName": "Isha Kapoor"
+      },
+      {
+        "userId": "u012",
+        "displayName": "Vivek Jain"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      }
+    ]
+  },
+  {
+    "id": "c025",
+    "topic": "Customer ABC",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u007",
+        "displayName": "Priya Menon"
+      },
+      {
+        "userId": "u009",
+        "displayName": "Sana Khan"
+      },
+      {
+        "userId": "u013",
+        "displayName": "Rahul"
+      },
+      {
+        "userId": "u016",
+        "displayName": "Meera Iyer"
+      }
+    ]
+  },
+  {
+    "id": "c026",
+    "topic": "Incident Review",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u001",
+        "displayName": "Rahul Sharma"
+      },
+      {
+        "userId": "u002",
+        "displayName": "Rahul Verma"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u004",
+        "displayName": "Amit Sinha"
+      },
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      },
+      {
+        "userId": "u006",
+        "displayName": "Neha Goyal"
+      }
+    ]
+  },
+  {
+    "id": "c027",
+    "topic": "Hiring Panel",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u011",
+        "displayName": "Isha Kapoor"
+      },
+      {
+        "userId": "u003",
+        "displayName": "Amit Singh"
+      },
+      {
+        "userId": "u005",
+        "displayName": "Neha Gupta"
+      },
+      {
+        "userId": "u008",
+        "displayName": "Karan Mehta"
+      }
+    ]
+  },
+  {
+    "id": "c028",
+    "topic": "Onboarding Buddy",
+    "chatType": "group",
+    "members": [
+      {
+        "userId": "u006",
+        "displayName": "Neha Goyal"
+      },
+      {
+        "userId": "u011",
+        "displayName": "Isha Kapoor"
+      },
+      {
+        "userId": "u010",
+        "displayName": "Arjun Batra"
+      }
+    ]
+  }
+]
