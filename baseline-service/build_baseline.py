@@ -5,9 +5,11 @@ import asyncio
 import os
 from pathlib import Path
 
+from app.baseline_db_store import BaselineDBStore
 from app.baseline_builder import BaselineBuilder, BuildStatus
 from app.graph_client import GraphClient
 from app.keyword_miner import KeywordMinerClient, KeywordMinerConfig
+from app.keyword_store import KeywordStore
 
 
 def parse_args() -> argparse.Namespace:
@@ -35,13 +37,25 @@ async def _main() -> None:
             max_retries=int(os.getenv("KEYWORD_MINER_MAX_RETRIES", "3")),
         )
     )
+    keyword_store = None
+    baseline_store = None
+    if os.getenv("KEYWORD_DB_ENABLED", "false").lower() == "true":
+        dsn = os.getenv("KEYWORD_DB_DSN", "postgresql://postgres:postgres@keyword-db:5432/keywords")
+        baseline_store = BaselineDBStore(dsn=dsn)
+        baseline_store.init_schema()
+        keyword_store = KeywordStore(dsn=dsn)
+        keyword_store.init_schema()
+        keyword_store.import_json_if_empty(keyword_stats_path)
     builder = BaselineBuilder(
         GraphClient(base_url=args.base_url),
         output_path,
         status,
         keyword_miner=keyword_miner,
+        baseline_store=baseline_store,
+        keyword_store=keyword_store,
         keyword_stats_path=keyword_stats_path,
         keyword_batch_size=int(os.getenv("KEYWORD_MINER_BATCH_SIZE", "200")),
+        keyword_miner_workers=int(os.getenv("KEYWORD_MINER_WORKERS", "3")),
     )
     await builder.build(days=args.days)
     print(f"Wrote baseline to {output_path}")

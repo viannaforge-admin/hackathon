@@ -10,9 +10,11 @@ from typing import Literal
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
+from app.baseline_db_store import BaselineDBStore
 from app.baseline_builder import BaselineBuilder, BuildStatus
 from app.graph_client import GraphClient
 from app.keyword_miner import KeywordMinerClient, KeywordMinerConfig
+from app.keyword_store import KeywordStore
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 
@@ -25,6 +27,8 @@ app = FastAPI(title="Topic-Aware Baseline Builder", version="1.0.0")
 app.state.status = BuildStatus()
 app.state.task = None
 app.state.lock = asyncio.Lock()
+app.state.keyword_store = None
+app.state.baseline_store = None
 
 
 class BuildRequest(BaseModel):
@@ -67,8 +71,11 @@ async def build_baseline(request: BuildRequest | None = None) -> dict[str, str]:
                     OUTPUT_PATH,
                     status,
                     keyword_miner=keyword_miner,
+                    baseline_store=app.state.baseline_store,
+                    keyword_store=app.state.keyword_store,
                     keyword_stats_path=KEYWORD_STATS_PATH,
                     keyword_batch_size=int(os.getenv("KEYWORD_MINER_BATCH_SIZE", "200")),
+                    keyword_miner_workers=int(os.getenv("KEYWORD_MINER_WORKERS", "3")),
                 )
                 await builder.build(days=days)
             except Exception as exc:
@@ -92,6 +99,12 @@ def baseline_status() -> dict[str, int | str]:
 
 @app.get("/v1/baseline/{user_id}")
 def get_user_baseline(user_id: str) -> dict:
+    baseline_store: BaselineDBStore | None = app.state.baseline_store
+    if baseline_store is not None:
+        payload = baseline_store.get_user(user_id)
+        if payload is not None:
+            return payload
+
     if not OUTPUT_PATH.exists():
         raise HTTPException(status_code=404, detail="baseline.json not found")
 
@@ -104,6 +117,9 @@ def get_user_baseline(user_id: str) -> dict:
 
 @app.get("/v1/keywords/topics")
 def list_keyword_topics() -> dict[str, list[str]]:
+    keyword_store: KeywordStore | None = app.state.keyword_store
+    if keyword_store is not None:
+        return {"topics": keyword_store.list_topics()}
     stats = _read_keyword_stats()
     topics = stats.get("topics", {})
     if not isinstance(topics, dict):
@@ -113,6 +129,9 @@ def list_keyword_topics() -> dict[str, list[str]]:
 
 @app.get("/v1/keywords/suggestions")
 def list_keyword_suggestions(topic: str) -> dict[str, list[dict[str, int | str]]]:
+    keyword_store: KeywordStore | None = app.state.keyword_store
+    if keyword_store is not None:
+        return {"value": keyword_store.list_suggestions(topic)}
     stats = _read_keyword_stats()
     topics = stats.get("topics", {})
     if not isinstance(topics, dict):
@@ -148,43 +167,63 @@ def submit_keyword_review(payload: KeywordReviewRequest) -> dict[str, int]:
     if not payload.items:
         return {"updated": 0}
 
-    stats = _read_keyword_stats()
-    topics = stats.setdefault("topics", {})
-    if not isinstance(topics, dict):
-        raise HTTPException(status_code=500, detail="keyword_stats.json malformed")
-
+    keyword_store: KeywordStore | None = app.state.keyword_store
     rules = _read_topic_rules()
-    updated = 0
+    if keyword_store is not None:
+        updated = keyword_store.apply_review([item.model_dump() for item in payload.items])
+    else:
+        stats = _read_keyword_stats()
+        topics = stats.setdefault("topics", {})
+        if not isinstance(topics, dict):
+            raise HTTPException(status_code=500, detail="keyword_stats.json malformed")
+        updated = 0
+        for item in payload.items:
+            topic = item.topic.strip().lower()
+            term = item.term.strip().lower()
+            if not topic or not term:
+                continue
+            topic_stats = topics.setdefault(topic, {"keywords": {}, "phrases": {}})
+            if not isinstance(topic_stats, dict):
+                continue
+            bucket_key = "keywords" if item.termType == "keyword" else "phrases"
+            bucket = topic_stats.setdefault(bucket_key, {})
+            if not isinstance(bucket, dict):
+                continue
+            entry = bucket.setdefault(term, {"occurrences": 0, "ignored": False, "reasonForIgnore": 0})
+            if not isinstance(entry, dict):
+                continue
+            entry["ignored"] = True
+            entry["reasonForIgnore"] = 1 if item.action == "add" else 2
+            if "occurrences" not in entry:
+                entry["occurrences"] = 0
+            updated += 1
+        _write_keyword_stats(stats)
 
     for item in payload.items:
         topic = item.topic.strip().lower()
         term = item.term.strip().lower()
-        if not topic or not term:
-            continue
-
-        topic_stats = topics.setdefault(topic, {"keywords": {}, "phrases": {}})
-        if not isinstance(topic_stats, dict):
-            continue
-        bucket_key = "keywords" if item.termType == "keyword" else "phrases"
-        bucket = topic_stats.setdefault(bucket_key, {})
-        if not isinstance(bucket, dict):
-            continue
-        entry = bucket.setdefault(term, {"occurrences": 0, "ignored": False, "reasonForIgnore": 0})
-        if not isinstance(entry, dict):
-            continue
-
-        entry["ignored"] = True
-        entry["reasonForIgnore"] = 1 if item.action == "add" else 2
-        if "occurrences" not in entry:
-            entry["occurrences"] = 0
-        updated += 1
-
-        if item.action == "add":
+        if item.action == "add" and topic and term:
             _add_term_to_rules(rules, topic, term, item.termType)
 
-    _write_keyword_stats(stats)
     _write_topic_rules(rules)
     return {"updated": updated}
+
+
+@app.on_event("startup")
+async def startup() -> None:
+    use_db = os.getenv("KEYWORD_DB_ENABLED", "false").lower() == "true"
+    if not use_db:
+        app.state.keyword_store = None
+        app.state.baseline_store = None
+        return
+    dsn = os.getenv("KEYWORD_DB_DSN", "postgresql://postgres:postgres@keyword-db:5432/keywords")
+    baseline_store = BaselineDBStore(dsn=dsn)
+    baseline_store.init_schema()
+    app.state.baseline_store = baseline_store
+    store = KeywordStore(dsn=dsn)
+    store.init_schema()
+    store.import_json_if_empty(KEYWORD_STATS_PATH)
+    app.state.keyword_store = store
 
 
 def _read_keyword_stats() -> dict:

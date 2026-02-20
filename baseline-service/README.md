@@ -112,6 +112,20 @@ Each extraction response increments cumulative counts in `keyword_stats.json`.
 
 Any item with `ignored=true` is excluded from suggestions API and frontend table.
 
+## Postgres Keyword Store
+
+Keyword suggestions/review and baseline user payloads use Postgres when enabled.
+
+Environment:
+- `KEYWORD_DB_ENABLED=true|false` (default `true` in compose)
+- `KEYWORD_DB_DSN` (default `postgresql://postgres:postgres@keyword-db:5432/keywords`)
+
+Behavior:
+- Batch extraction increments terms in DB.
+- Review actions (`add`/`ignore`) update DB flags.
+- Built baseline user data (`/v1/baseline/{userId}`) is stored/read from DB.
+- `keyword_stats.json` is exported from DB at build completion for compatibility.
+
 ## Tests
 
 ```bash

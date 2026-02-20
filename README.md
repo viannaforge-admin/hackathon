@@ -2,6 +2,7 @@
 
 This workspace contains five services:
 
+- `keyword-db`: Postgres store for keyword/phrase suggestions on port `5432`
 - `graph-mock`: Microsoft Graph (Teams) mock server on port `8000`
 - `baseline-service`: topic-aware behavioral baseline builder on port `8010`
 - `misdelivery-service`: pre-send misdelivery risk checker on port `8020`
@@ -11,6 +12,7 @@ This workspace contains five services:
 ## Services
 
 - Graph mock base URL: `http://127.0.0.1:8000`
+- Keyword DB: `postgresql://postgres:postgres@127.0.0.1:5432/keywords`
 - Baseline service base URL: `http://127.0.0.1:8010`
 - Misdelivery service base URL: `http://127.0.0.1:8020`
 - LLM explainer service base URL: `http://127.0.0.1:8030`

@@ -1,4 +1,17 @@
 services:
+  keyword-db:
+    image: postgres:16-alpine
+    container_name: keyword-db
+    environment:
+      - POSTGRES_DB=keywords
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - keyword_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
   graph-mock:
     build:
       context: ./graph-mock
@@ -18,11 +31,15 @@ services:
       - USE_LLM_KEYWORD_MINER=${USE_LLM_KEYWORD_MINER:-false}
       - KEYWORD_MINER_URL=http://llm-explainer-service:8030
       - KEYWORD_MINER_BATCH_SIZE=${KEYWORD_MINER_BATCH_SIZE:-200}
+      - KEYWORD_MINER_WORKERS=${KEYWORD_MINER_WORKERS:-3}
       - KEYWORD_MINER_TIMEOUT_SECONDS=3.0
       - KEYWORD_MINER_MAX_RETRIES=3
+      - KEYWORD_DB_ENABLED=${KEYWORD_DB_ENABLED:-true}
+      - KEYWORD_DB_DSN=${KEYWORD_DB_DSN:-postgresql://postgres:postgres@keyword-db:5432/keywords}
     depends_on:
       - graph-mock
       - llm-explainer-service
+      - keyword-db
     volumes:
       - ./baseline-service:/app
     ports:
@@ -77,3 +94,6 @@ services:
     ports:
       - "8040:8040"
     restart: unless-stopped
+
+volumes:
+  keyword_db_data:

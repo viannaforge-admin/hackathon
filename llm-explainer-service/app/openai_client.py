@@ -132,7 +132,6 @@ class OpenAIExplainerClient:
             async with httpx.AsyncClient(timeout=timeout_seconds) as client:
                 response = await client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=request_body)
                 response.raise_for_status()
-                LOGGER.info(response.json())
                 return response.json()
         except Exception as exc:
             LOGGER.warning("OpenAI call failed (%s): %r", type(exc).__name__, exc)
@@ -172,10 +171,16 @@ def _normalize_map(value: Any) -> dict[str, int]:
             term = str(key).strip().lower()
             if not term:
                 continue
-            try:
-                c = int(count)
-            except Exception:
-                c = 0
+            if isinstance(count, dict):
+                try:
+                    c = int(count.get("count", 0))
+                except Exception:
+                    c = 0
+            else:
+                try:
+                    c = int(count)
+                except Exception:
+                    c = 0
             if c > 0:
                 result[term] = result.get(term, 0) + c
         return result

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import asyncio
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
@@ -10,7 +11,9 @@ from statistics import pstdev
 from typing import Any
 
 from app.graph_client import GraphClient
+from app.baseline_db_store import BaselineDBStore
 from app.keyword_miner import KeywordMinerClient
+from app.keyword_store import KeywordStore
 from app.topic_classifier import classify_topic
 
 NOW_FIXED = datetime(2026, 2, 15, 0, 0, 0, tzinfo=UTC)
@@ -48,17 +51,28 @@ class BaselineBuilder:
         output_path: Path,
         status: BuildStatus,
         keyword_miner: KeywordMinerClient | None = None,
+        baseline_store: BaselineDBStore | None = None,
+        keyword_store: KeywordStore | None = None,
         keyword_stats_path: Path | None = None,
         keyword_batch_size: int = 200,
+        keyword_miner_workers: int = 3,
     ) -> None:
         self.graph_client = graph_client
         self.output_path = output_path
         self.status = status
         self.keyword_miner = keyword_miner
+        self.baseline_store = baseline_store
+        self.keyword_store = keyword_store
         self.keyword_stats_path = keyword_stats_path or output_path.with_name("keyword_stats.json")
         self.keyword_batch_size = max(keyword_batch_size, 10)
+        self.keyword_miner_workers = max(keyword_miner_workers, 1)
         self._keyword_buffer: list[str] = []
-        self._topic_term_stats: dict[str, dict[str, dict[str, dict[str, int | bool]]]] = self._load_existing_keyword_stats()
+        self._pending_miner_tasks: list[asyncio.Task[None]] = []
+        self._miner_semaphore = asyncio.Semaphore(self.keyword_miner_workers)
+        self._term_lock = asyncio.Lock()
+        self._topic_term_stats: dict[str, dict[str, dict[str, dict[str, int | bool]]]] = (
+            self._load_existing_keyword_stats() if self.keyword_store is None else {}
+        )
 
     async def build(self, days: int = 35) -> dict[str, Any]:
         cutoff = NOW_FIXED - timedelta(days=days)
@@ -103,9 +117,12 @@ class BaselineBuilder:
                         LOGGER.warning("Skipping malformed message in chat %s: %s", chat_id, exc)
                         continue
 
-        await self._flush_keyword_buffer()
+        self._dispatch_buffered_batch()
+        await self._await_pending_miner_tasks()
         baseline = self._finalize(users_by_id, senders, days)
         self.output_path.write_text(json.dumps(baseline, indent=2), encoding="utf-8")
+        if self.baseline_store is not None:
+            self.baseline_store.save_baseline(baseline)
         self._write_keyword_stats(days)
         self.status.state = "completed"
         LOGGER.info(
@@ -183,27 +200,57 @@ class BaselineBuilder:
             return
         self._keyword_buffer.append(cleaned)
         if len(self._keyword_buffer) >= self.keyword_batch_size:
-            await self._flush_keyword_buffer()
+            self._dispatch_buffered_batch()
 
-    async def _flush_keyword_buffer(self) -> None:
+    def _dispatch_buffered_batch(self) -> None:
         if self.keyword_miner is None or not self._keyword_buffer:
             return
         batch = list(self._keyword_buffer)
         self._keyword_buffer.clear()
-        result = await self.keyword_miner.extract(batch)
+        task = asyncio.create_task(self._run_miner_batch(batch))
+        self._pending_miner_tasks.append(task)
+        task.add_done_callback(lambda t: self._pending_miner_tasks.remove(t) if t in self._pending_miner_tasks else None)
+
+    async def _run_miner_batch(self, batch: list[str]) -> None:
+        if self.keyword_miner is None:
+            return
+        async with self._miner_semaphore:
+            result = await self.keyword_miner.extract(batch)
+        await self._merge_keyword_result(result, len(batch))
+
+    async def _merge_keyword_result(self, result: dict[str, dict[str, dict[str, int]]], batch_size: int) -> None:
         merged = 0
+        increment_payload: dict[str, dict[str, dict[str, int | bool]]] = {}
         for topic, payload in result.get("topics", {}).items():
             keywords = payload.get("keywords", {})
             phrases = payload.get("phrases", {})
+            increment_payload.setdefault(topic, {"keywords": {}, "phrases": {}})
             if isinstance(keywords, dict):
                 for term, count in keywords.items():
-                    self._increment_term(topic, "keywords", str(term), int(count))
+                    if self.keyword_store is None:
+                        async with self._term_lock:
+                            self._increment_term(topic, "keywords", str(term), int(count))
+                    increment_payload[topic]["keywords"][str(term)] = int(count)
                     merged += int(count)
             if isinstance(phrases, dict):
                 for term, count in phrases.items():
-                    self._increment_term(topic, "phrases", str(term), int(count))
+                    if self.keyword_store is None:
+                        async with self._term_lock:
+                            self._increment_term(topic, "phrases", str(term), int(count))
+                    increment_payload[topic]["phrases"][str(term)] = int(count)
                     merged += int(count)
-        LOGGER.info("Keyword miner batch merged terms: %d from %d messages", merged, len(batch))
+        if self.keyword_store is not None and increment_payload:
+            self.keyword_store.increment_terms(increment_payload)
+        LOGGER.info("Keyword miner batch merged terms: %d from %d messages", merged, batch_size)
+
+    async def _await_pending_miner_tasks(self) -> None:
+        if not self._pending_miner_tasks:
+            return
+        tasks = list(self._pending_miner_tasks)
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        for result in results:
+            if isinstance(result, Exception):
+                LOGGER.warning("Keyword miner async task failed: %s", result)
 
     def _finalize(
         self,
@@ -265,6 +312,15 @@ class BaselineBuilder:
         }
 
     def _write_keyword_stats(self, days: int) -> None:
+        if self.keyword_store is not None:
+            payload = self.keyword_store.export_snapshot(
+                days=days,
+                message_count=self.status.messages_processed,
+                batch_size=self.keyword_batch_size,
+            )
+            self.keyword_stats_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+            return
+
         sorted_topics: dict[str, dict[str, dict[str, dict[str, int | bool]]]] = {}
         for topic, payload in sorted(self._topic_term_stats.items(), key=lambda item: item[0]):
             sorted_topics[topic] = {
