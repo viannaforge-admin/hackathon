@@ -105,4 +105,9 @@ def classify_topic(message_text: str, attachment_names: Iterable[str]) -> str:
         scores[topic] += weight
 
     best_topic = max(scores, key=scores.get)
-    return best_topic if scores[best_topic] >= 2 else "normal"
+    total_signal = sum(scores.values())
+    if scores[best_topic] >= 2:
+        return best_topic
+    if total_signal >= 2:
+        return best_topic
+    return "normal"

@@ -1,0 +1,307 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: My first collection
+meta:
+  id: wrk_04c9cd9527474dedbe07771a9833848e
+  created: 1768128355297
+  modified: 1768128355297
+  description: ""
+collection:
+  - name: teams
+    meta:
+      id: fld_0a1c8d4f7e724aaba4408c3122769cb5
+      created: 1771149473499
+      modified: 1771149473499
+      sortKey: -1771149473499
+      description: ""
+    children:
+      - url: http://127.0.0.1:8000/v1.0/users
+        name: users
+        meta:
+          id: req_a73c5daa53484f1e923684d25d52a409
+          created: 1771149477345
+          modified: 1771149984146
+          isPrivate: false
+          description: ""
+          sortKey: -1771149477345
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8000/v1.0/users?$top=5&$skip=5
+        name: users paginated
+        meta:
+          id: req_6f6b78f32fa44ebdad99b4cb155d7796
+          created: 1771150052537
+          modified: 1771150078745
+          isPrivate: false
+          description: ""
+          sortKey: -1767783847646
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8000/v1.0/users/u001/chats
+        name: chat
+        meta:
+          id: req_643a4589b31e48c6ad30d08af6228511
+          created: 1771150111259
+          modified: 1771150121706
+          isPrivate: false
+          description: ""
+          sortKey: -1769466662495.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8000/v1.0/users/u001/chats?$top=3&$skip=3
+        name: chat paginated
+        meta:
+          id: req_af0787fa362340609f4cbc5753ae982a
+          created: 1771150138264
+          modified: 1771150151660
+          isPrivate: false
+          description: ""
+          sortKey: -1768625255070.75
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8000/v1.0/chats/c017/messages
+        name: messages
+        meta:
+          id: req_2f13121a57f046cfbbcfbe7b18a8e441
+          created: 1771150180881
+          modified: 1771467188523
+          isPrivate: false
+          description: ""
+          sortKey: -1771149477445
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8000/v1.0/chats/c017/messages?$top=20&$skip=40
+        name: messages paginated
+        meta:
+          id: req_e7ab78763600423092678c560578d16e
+          created: 1771150204966
+          modified: 1771150216064
+          isPrivate: false
+          description: ""
+          sortKey: -1771149477395
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8000/v1.0/chats/c017/messages?\$filter=lastModifiedDateTime%20ge%202026-02-01T00:00:00Z
+        name: messages by date
+        meta:
+          id: req_c914e35a7dbb4e2eba75b685282d76b8
+          created: 1771150239219
+          modified: 1771150243209
+          isPrivate: false
+          description: ""
+          sortKey: -1771149477370
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8020/v1/pre-send/check
+        name: New Request
+        meta:
+          id: req_d28c98f343f94218aff9dfdef659d400
+          created: 1771467436756
+          modified: 1771478297751
+          isPrivate: false
+          description: ""
+          sortKey: -1771149477432.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+                "senderUserId":"u005",
+                "to":[{"userId":"u002","email":"rahul.verma@company.com"}],
+                "cc":[],
+                "bcc":[],
+                "messageText":"Please review payroll adjustment and compensation update",
+                "attachments":[{"name":"Payroll_Feb.xlsx","contentType":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","size":12345,"isLink":false}],
+                "now":"2026-02-15T10:15:00Z"
+              }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8020/v1/pre-send/check
+        name: New Request
+        meta:
+          id: req_ada65994b5a74a83924160cd8bcb9b95
+          created: 1771467565157
+          modified: 1771467573158
+          isPrivate: false
+          description: ""
+          sortKey: -1771149477413.75
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+                "senderUserId":"u001",
+                "to":[{"userId":"u002","email":"rahul.verma@company.com"}],
+                "cc":[],
+                "bcc":[{"userId":"u015","email":"rahul@vendor.com"}],
+                "messageText":"Please review payroll and invoice details before release",
+                "attachments":[{"name":"Payroll_Feb.xlsx","contentType":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","size":12345,"isLink":false}],
+                "now":"2026-02-15T21:30:00Z"
+              }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: baseline
+    meta:
+      id: fld_c92a0618014f4621a8e9b7c76714204b
+      created: 1771308506044
+      modified: 1771308506044
+      sortKey: -1771308506044
+      description: ""
+    children:
+      - url: http://127.0.0.1:8010/v1/baseline/build
+        name: New Request
+        meta:
+          id: req_cf94a48978574d17b0b85e40e6753f6c
+          created: 1771308514280
+          modified: 1771467467388
+          isPrivate: false
+          description: ""
+          sortKey: -1771467465701
+        method: POST
+        body:
+          mimeType: application/json
+          text: '{"days":35}'
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://127.0.0.1:8010/v1/baseline/status
+        name: New Request
+        meta:
+          id: req_981e4996db9b4adc8fed27b21a73a578
+          created: 1771308553195
+          modified: 1771467465637
+          isPrivate: false
+          description: ""
+          sortKey: -1771467465601
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_194ca3671546a130caaf4cc87925e67d12408d88
+    created: 1768128355298
+    modified: 1768128355298
+environments:
+  name: Base Environment
+  meta:
+    id: env_194ca3671546a130caaf4cc87925e67d12408d88
+    created: 1768128355298
+    modified: 1768128355298
+    isPrivate: false

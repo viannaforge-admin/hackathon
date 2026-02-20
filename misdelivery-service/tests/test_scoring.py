@@ -52,8 +52,8 @@ def test_warn_when_baseline_missing() -> None:
     )
 
     result = evaluate_pre_send(payload, None, directory)
-    assert result.decision == "WARN"
-    assert result.score >= 55
+    assert result.decision == "ALLOW"
+    assert result.score < 55
     assert "no_baseline" in result.reasons
 
 

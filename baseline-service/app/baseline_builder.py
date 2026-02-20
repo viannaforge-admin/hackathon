@@ -191,15 +191,19 @@ class BaselineBuilder:
         batch = list(self._keyword_buffer)
         self._keyword_buffer.clear()
         result = await self.keyword_miner.extract(batch)
+        merged = 0
         for topic, payload in result.get("topics", {}).items():
             keywords = payload.get("keywords", {})
             phrases = payload.get("phrases", {})
             if isinstance(keywords, dict):
                 for term, count in keywords.items():
                     self._increment_term(topic, "keywords", str(term), int(count))
+                    merged += int(count)
             if isinstance(phrases, dict):
                 for term, count in phrases.items():
                     self._increment_term(topic, "phrases", str(term), int(count))
+                    merged += int(count)
+        LOGGER.info("Keyword miner batch merged terms: %d from %d messages", merged, len(batch))
 
     def _finalize(
         self,

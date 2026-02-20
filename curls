@@ -1,0 +1,36 @@
+curl --request GET \
+  --url http://127.0.0.1:8010/v1/baseline/status
+
+
+
+curl --request POST \
+  --url http://127.0.0.1:8010/v1/baseline/build \
+  --header 'Content-Type: application/json' \
+  --data '{"days":35}'
+
+
+curl --request POST \
+  --url http://127.0.0.1:8020/v1/pre-send/check \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "senderUserId":"u005",
+    "to":[{"userId":"u002","email":"rahul.verma@company.com"}],
+    "cc":[],
+    "bcc":[],
+    "messageText":"Please review payroll adjustment and compensation update",
+    "attachments":[{"name":"Payroll_Feb.xlsx","contentType":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","size":12345,"isLink":false}],
+    "now":"2026-02-15T10:15:00Z"
+  }'
+
+curl --request POST \
+  --url http://127.0.0.1:8020/v1/pre-send/check \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "senderUserId":"u001",
+    "to":[{"userId":"u002","email":"rahul.verma@company.com"}],
+    "cc":[],
+    "bcc":[{"userId":"u015","email":"rahul@vendor.com"}],
+    "messageText":"Please review payroll and invoice details before release",
+    "attachments":[{"name":"Payroll_Feb.xlsx","contentType":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","size":12345,"isLink":false}],
+    "now":"2026-02-15T21:30:00Z"
+  }'

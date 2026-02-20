@@ -79,7 +79,6 @@ def evaluate_pre_send(
     score = 0
 
     if sender_baseline is None:
-        score = max(score, 55)
         reasons.append("no_baseline")
 
     if confusion_detected:

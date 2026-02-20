@@ -15,6 +15,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 OPENAI_TEMPERATURE = float(os.getenv("OPENAI_TEMPERATURE", "0"))
 OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "1.5"))
+OPENAI_KEYWORD_TIMEOUT_SECONDS = float(os.getenv("OPENAI_KEYWORD_TIMEOUT_SECONDS", "6.0"))
 
 app = FastAPI(title="LLM Explainer Service", version="1.0.0")
 
@@ -39,6 +40,7 @@ async def explain(payload: ExplainRequest) -> ExplainResponse:
             model=OPENAI_MODEL,
             temperature=OPENAI_TEMPERATURE,
             timeout_seconds=OPENAI_TIMEOUT_SECONDS,
+            keyword_timeout_seconds=OPENAI_KEYWORD_TIMEOUT_SECONDS,
         )
     )
     result = await client.explain(payload.model_dump())
@@ -65,6 +67,7 @@ async def extract_keywords(payload: KeywordExtractRequest) -> KeywordExtractResp
             model=OPENAI_MODEL,
             temperature=OPENAI_TEMPERATURE,
             timeout_seconds=OPENAI_TIMEOUT_SECONDS,
+            keyword_timeout_seconds=OPENAI_KEYWORD_TIMEOUT_SECONDS,
         )
     )
     result = await client.extract_keywords(payload.messages)

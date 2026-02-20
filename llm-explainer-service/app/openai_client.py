@@ -13,6 +13,11 @@ SYSTEM_PROMPT = (
     "You are a security assistant. You MUST only use the fields provided in the JSON. "
     "Do not invent facts. If unsure, say 'I don't have enough information'."
 )
+KEYWORD_SYSTEM_PROMPT = (
+    "You extract keyword and phrase frequencies from message arrays. "
+    "Return only strict JSON. Use lowercase terms and integer counts. "
+    "Do not include commentary."
+)
 
 
 @dataclass
@@ -21,6 +26,7 @@ class OpenAIConfig:
     model: str
     temperature: float
     timeout_seconds: float
+    keyword_timeout_seconds: float
 
 
 class OpenAIExplainerClient:
@@ -34,22 +40,17 @@ class OpenAIExplainerClient:
             f"INPUT_JSON:\n{json.dumps(payload, ensure_ascii=True)}"
         )
 
-        request_body = {
-            "model": self.config.model,
-            "temperature": self.config.temperature,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt},
-            ],
-            "response_format": {"type": "json_object"},
-        }
-
         headers = {
             "Authorization": f"Bearer {self.config.api_key}",
             "Content-Type": "application/json",
         }
 
-        raw = await self._chat(prompt=prompt, headers=headers)
+        raw = await self._chat(
+            prompt=prompt,
+            headers=headers,
+            timeout_seconds=self.config.timeout_seconds,
+            system_prompt=SYSTEM_PROMPT,
+        )
         if raw is None:
             return None
 
@@ -76,17 +77,28 @@ class OpenAIExplainerClient:
             "Authorization": f"Bearer {self.config.api_key}",
             "Content-Type": "application/json",
         }
-        raw = await self._chat(prompt=prompt, headers=headers)
+        raw = await self._chat(
+            prompt=prompt,
+            headers=headers,
+            timeout_seconds=self.config.keyword_timeout_seconds,
+            system_prompt=KEYWORD_SYSTEM_PROMPT,
+        )
         if raw is None:
             return None
-
         parsed = _extract_json_output(raw)
         if parsed is None:
             return None
 
         topics = parsed.get("topics", {})
         if not isinstance(topics, dict):
-            return None
+            # Backward-compatible fallback if model returns flat shape:
+            # {"keywords": {...}, "phrases": {...}}
+            topics = {
+                "normal": {
+                    "keywords": parsed.get("keywords", {}),
+                    "phrases": parsed.get("phrases", {}),
+                }
+            }
         normalized: dict[str, dict[str, dict[str, int]]] = {}
         for topic, payload in topics.items():
             if not isinstance(topic, str) or not isinstance(payload, dict):
@@ -95,26 +107,35 @@ class OpenAIExplainerClient:
                 "keywords": _normalize_map(payload.get("keywords", {})),
                 "phrases": _normalize_map(payload.get("phrases", {})),
             }
+        if not normalized:
+            return None
         return {"topics": normalized}
 
-    async def _chat(self, prompt: str, headers: dict[str, str]) -> dict[str, Any] | None:
+    async def _chat(
+        self,
+        prompt: str,
+        headers: dict[str, str],
+        timeout_seconds: float,
+        system_prompt: str,
+    ) -> dict[str, Any] | None:
         request_body = {
             "model": self.config.model,
             "temperature": self.config.temperature,
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt},
             ],
             "response_format": {"type": "json_object"},
         }
 
         try:
-            async with httpx.AsyncClient(timeout=self.config.timeout_seconds) as client:
+            async with httpx.AsyncClient(timeout=timeout_seconds) as client:
                 response = await client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=request_body)
                 response.raise_for_status()
+                LOGGER.info(response.json())
                 return response.json()
         except Exception as exc:
-            LOGGER.warning("OpenAI explanation call failed: %s", exc)
+            LOGGER.warning("OpenAI call failed (%s): %r", type(exc).__name__, exc)
             return None
 
 
@@ -144,17 +165,34 @@ def _extract_json_output(raw_response: dict[str, Any]) -> dict[str, Any] | None:
 
 
 def _normalize_map(value: Any) -> dict[str, int]:
-    if not isinstance(value, dict):
-        return {}
     result: dict[str, int] = {}
-    for key, count in value.items():
-        term = str(key).strip().lower()
-        if not term:
-            continue
-        try:
-            c = int(count)
-        except Exception:
-            c = 0
-        if c > 0:
-            result[term] = result.get(term, 0) + c
+    if isinstance(value, dict):
+        items = value.items()
+        for key, count in items:
+            term = str(key).strip().lower()
+            if not term:
+                continue
+            try:
+                c = int(count)
+            except Exception:
+                c = 0
+            if c > 0:
+                result[term] = result.get(term, 0) + c
+        return result
+    if isinstance(value, list):
+        for item in value:
+            if isinstance(item, str):
+                term = item.strip().lower()
+                if term:
+                    result[term] = result.get(term, 0) + 1
+            elif isinstance(item, dict):
+                term = str(item.get("term", "")).strip().lower()
+                if not term:
+                    continue
+                try:
+                    c = int(item.get("count", 1))
+                except Exception:
+                    c = 1
+                if c > 0:
+                    result[term] = result.get(term, 0) + c
     return result

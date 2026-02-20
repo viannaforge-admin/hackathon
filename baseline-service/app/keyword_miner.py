@@ -58,31 +58,71 @@ def _parse_counts(raw: Any) -> dict[str, dict[str, dict[str, int]]]:
         return {"topics": {}}
 
     topics_raw = raw.get("topics", {})
-    if not isinstance(topics_raw, dict):
-        return {"topics": {}}
     topics: dict[str, dict[str, dict[str, int]]] = {}
-    for topic, payload in topics_raw.items():
-        if not isinstance(topic, str) or not isinstance(payload, dict):
-            continue
-        topics[topic] = {
-            "keywords": _normalize_map(payload.get("keywords", {})),
-            "phrases": _normalize_map(payload.get("phrases", {})),
+
+    # Preferred shape: {"topics": {"finance": {"keywords": {...}, "phrases": {...}}}}
+    if isinstance(topics_raw, dict):
+        for topic, payload in topics_raw.items():
+            if not isinstance(topic, str) or not isinstance(payload, dict):
+                continue
+            topics[topic] = {
+                "keywords": _normalize_map(payload.get("keywords", {})),
+                "phrases": _normalize_map(payload.get("phrases", {})),
+            }
+
+    # Alternate shape: {"topics": [{"topic":"finance","keywords":[...],"phrases":[...]}]}
+    elif isinstance(topics_raw, list):
+        for item in topics_raw:
+            if not isinstance(item, dict):
+                continue
+            topic = str(item.get("topic", "")).strip().lower()
+            if not topic:
+                continue
+            topics[topic] = {
+                "keywords": _normalize_map(item.get("keywords", {})),
+                "phrases": _normalize_map(item.get("phrases", {})),
+            }
+
+    # Backward shape: {"keywords": {...}, "phrases": {...}}
+    if not topics and ("keywords" in raw or "phrases" in raw):
+        topics["normal"] = {
+            "keywords": _normalize_map(raw.get("keywords", {})),
+            "phrases": _normalize_map(raw.get("phrases", {})),
         }
+
     return {"topics": topics}
 
 
 def _normalize_map(value: Any) -> dict[str, int]:
-    if not isinstance(value, dict):
-        return {}
     result: dict[str, int] = {}
-    for key, count in value.items():
-        term = str(key).strip().lower()
-        if not term:
-            continue
-        try:
-            c = int(count)
-        except Exception:
-            c = 0
-        if c > 0:
-            result[term] = result.get(term, 0) + c
+    if isinstance(value, dict):
+        for key, count in value.items():
+            term = str(key).strip().lower()
+            if not term:
+                continue
+            try:
+                c = int(count)
+            except Exception:
+                c = 0
+            if c > 0:
+                result[term] = result.get(term, 0) + c
+        return result
+
+    # Accept list forms: ["invoice", "payroll"] or [{"term":"invoice","count":2}]
+    if isinstance(value, list):
+        for item in value:
+            if isinstance(item, str):
+                term = item.strip().lower()
+                if term:
+                    result[term] = result.get(term, 0) + 1
+            elif isinstance(item, dict):
+                term = str(item.get("term", "")).strip().lower()
+                if not term:
+                    continue
+                try:
+                    c = int(item.get("count", 1))
+                except Exception:
+                    c = 1
+                if c > 0:
+                    result[term] = result.get(term, 0) + c
     return result
